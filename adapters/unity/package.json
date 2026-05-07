@@ -1,0 +1,25 @@
+{
+  "name": "com.hagegames.webloader",
+  "version": "0.1.0",
+  "displayName": "HAGE Games Web Loader",
+  "description": "Branded WebGL loading screen template for Unity. Drop-in replacement for the default WebGL template with a polished progress bar, logo, status stages, and responsive canvas scaling.",
+  "unity": "2021.3",
+  "keywords": [
+    "webgl",
+    "template",
+    "loader",
+    "loading-screen",
+    "hage-games"
+  ],
+  "author": {
+    "name": "HAGE Games"
+  },
+  "license": "MIT",
+  "samples": [
+    {
+      "displayName": "HAGEGames Template",
+      "description": "Copy the HAGEGames folder from the imported sample into Assets/WebGLTemplates/, then select it in Player Settings -> Resolution -> WebGL Template.",
+      "path": "Samples~/HAGEGamesTemplate"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>{{project.title}}</title>
+    {{#DEFOLD_HAS_FACEBOOK_APP_ID}}
+    <meta property="fb:app_id" content="{{facebook.appid}}"/>
+    {{/DEFOLD_HAS_FACEBOOK_APP_ID}}
+  </head>
+  <body>
+    <canvas id="canvas" tabindex="1" width="{{display.width}}" height="{{display.height}}"></canvas>
+
+    <script src="hage-loader.js"></script>
+    <script id="engine-loader" type="text/javascript" src="dmloader.js"></script>
+
+    <script id="engine-start" type="text/javascript">
+      var __hageLoader = HAGELoader.init({
+        productName: "{{project.title}}",
+        logoUrl: "logo.png",
+        gameWidth: {{display.width}},
+        gameHeight: {{display.height}},
+        brandColor: "#ff005a",
+        canvasId: "canvas",
+        skipCanvas: true,
+        minDisplayMs: 600
+      });
+
+      function __hageParseStatus(text) {
+        if (!text) return null;
+        var m = text.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/);
+        if (m) {
+          var cur = parseFloat(m[1]);
+          var tot = parseFloat(m[2]);
+          if (tot > 0) return Math.min(1, cur / tot);
+        }
+        var p = text.match(/(\d+(?:\.\d+)?)\s*%/);
+        if (p) return Math.min(1, parseFloat(p[1]) / 100);
+        return null;
+      }
+
+      if (typeof Progress !== "undefined" && typeof Progress.addListener === "function") {
+        Progress.addListener(function (percentage) {
+          __hageLoader.setProgress(percentage / 100);
+        });
+      } else if (typeof Module !== "undefined") {
+        var __origStatus = Module.setStatus;
+        Module.setStatus = function (text) {
+          if (__origStatus) __origStatus(text);
+          var p = __hageParseStatus(text);
+          if (p !== null) __hageLoader.setProgress(p);
+        };
+      }
+
+      if (typeof Module !== "undefined") {
+        var __origInit = Module.onRuntimeInitialized;
+        Module.onRuntimeInitialized = function () {
+          if (__origInit) __origInit();
+          __hageLoader.setProgress(1);
+          __hageLoader.hide();
+        };
+      }
+
+      EngineLoader.stream_wasm = "{{DEFOLD_STREAM_WASM}}";
+      EngineLoader.load("canvas", "{{exe-name}}");
+    </script>
+  </body>
+</html>

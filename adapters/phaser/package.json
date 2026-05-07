@@ -1,0 +1,29 @@
+{
+  "name": "@hagegames/phaser-loader",
+  "version": "0.1.0",
+  "description": "HAGE Games branded loading screen for Phaser. Drop-in scene factory.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "loader",
+    "preloader",
+    "loading-screen",
+    "hage-games"
+  ],
+  "peerDependencies": {
+    "phaser": ">=3.60.0"
+  },
+  "license": "MIT"
+}

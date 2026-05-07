@@ -1,0 +1,13 @@
+{
+  "name": "hage-loader-sdk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "pack": "node scripts/build.mjs && node scripts/pack.mjs"
+  },
+  "workspaces": [
+    "adapters/phaser"
+  ]
+}

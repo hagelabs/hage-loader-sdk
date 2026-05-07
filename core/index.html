@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAGE Loader Demo</title>
+  </head>
+  <body>
+    <script src="./dist/hage-loader.umd.js"></script>
+    <script>
+      var loader = HAGELoader.init({
+        productName: "Demo Game",
+        logoUrl: "./assets/logo.png",
+        subText: "Loading game",
+        gameWidth: 1080,
+        gameHeight: 720,
+        brandColor: "#ff005a",
+        minDisplayMs: 800
+      });
+
+      var p = 0;
+      var iv = setInterval(function () {
+        p += 0.02 + Math.random() * 0.04;
+        if (p >= 1) {
+          p = 1;
+          clearInterval(iv);
+          loader.setProgress(1);
+          setTimeout(function () {
+            loader.hide();
+          }, 300);
+        } else {
+          loader.setProgress(p);
+        }
+      }, 80);
+    </script>
+  </body>
+</html>

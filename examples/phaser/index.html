@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAGE Phaser Demo</title>
+    <style>html,body{margin:0;padding:0;overflow:hidden}</style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script type="module">
+      import { createHAGEBootScene } from "../../adapters/phaser/src/index.js";
+
+      const Boot = createHAGEBootScene({
+        productName: "Phaser Demo",
+        logoUrl: "./logo.png",
+        gameWidth: 1080,
+        gameHeight: 720,
+        brandColor: "#ff005a",
+        minDisplayMs: 1200,
+        nextScene: "Main",
+        preload: (scene) => {
+          for (let i = 0; i < 30; i++) {
+            scene.load.image("dummy_" + i, "./logo.png?cb=" + i);
+          }
+        }
+      });
+
+      class Main extends Phaser.Scene {
+        constructor() { super("Main"); }
+        create() {
+          this.cameras.main.setBackgroundColor("#0a0a0a");
+          this.add.text(540, 360, "Game Loaded", {
+            fontFamily: "system-ui, sans-serif",
+            fontSize: "32px",
+            color: "#ff005a"
+          }).setOrigin(0.5);
+        }
+      }
+
+      new Phaser.Game({
+        type: Phaser.AUTO,
+        width: 1080,
+        height: 720,
+        scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+        backgroundColor: "#0a0a0a",
+        scene: [Boot, Main]
+      });
+    </script>
+  </body>
+</html>

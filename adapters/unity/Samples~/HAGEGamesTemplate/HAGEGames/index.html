@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{{ PRODUCT_NAME }}}</title>
+  </head>
+  <body>
+    <script src="TemplateData/hage-loader.js"></script>
+    <script>
+      var loader = HAGELoader.init({
+        productName: "{{{ PRODUCT_NAME }}}",
+        logoUrl: "TemplateData/logo.png",
+        subText: "Loading game",
+        gameWidth: {{{ WIDTH }}},
+        gameHeight: {{{ HEIGHT }}},
+        brandColor: "#ff005a",
+        canvasId: "unity-canvas",
+        minDisplayMs: 600
+      });
+
+      var buildUrl = "Build";
+      var config = {
+        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "{{{ COMPANY_NAME }}}",
+        productName: "{{{ PRODUCT_NAME }}}",
+        productVersion: "{{{ PRODUCT_VERSION }}}"
+      };
+
+      var script = document.createElement("script");
+      script.src = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      script.onload = function () {
+        createUnityInstance(loader.canvas, config, function (progress) {
+          loader.setProgress(progress);
+        })
+          .then(function () {
+            loader.hide();
+          })
+          .catch(function (msg) {
+            loader.error("Failed to load. Please refresh.");
+            console.error(msg);
+          });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
