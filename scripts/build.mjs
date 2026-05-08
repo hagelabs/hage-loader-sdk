@@ -43,12 +43,14 @@ const TARGETS = [
   // [destinationPath, format ('umd' | 'esm')]
   ["adapters/unity/Samples~/HAGEGamesTemplate/HAGEGames/TemplateData/hage-loader.js", "umd"],
   ["adapters/defold/HAGEGames/hage-loader.js", "umd"],
+  ["adapters/godot/HAGEGames/hage-loader.js", "umd"],
   ["adapters/phaser/src/hage-loader.js", "esm"]
 ];
 
 const LOGO_TARGETS = [
   "adapters/unity/Samples~/HAGEGamesTemplate/HAGEGames/TemplateData/logo.png",
   "adapters/defold/HAGEGames/logo.png",
+  "adapters/godot/HAGEGames/logo.png",
   "adapters/construct/HAGEGames/logo.png",
   "examples/phaser/logo.png"
 ];
