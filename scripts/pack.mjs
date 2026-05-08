@@ -50,6 +50,13 @@ function main() {
     ["HAGEGames"]
   );
 
+  // Godot: engine_template + hage-loader.js + logo.
+  zip(
+    `hage-loader-godot-v${VERSION}.zip`,
+    resolve(ROOT, "adapters/godot"),
+    ["HAGEGames"]
+  );
+
   // Phaser: npm pack -> tgz.
   console.log("\npacking phaser via npm pack...");
   const phaserDir = resolve(ROOT, "adapters/phaser");

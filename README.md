@@ -1,6 +1,6 @@
 # HAGE Loader SDK
 
-Branded web game loading screen. Drop-in for **Unity WebGL**, **Phaser**, **Defold**, and **Construct 3**.
+Branded web game loading screen. Drop-in for **Unity WebGL**, **Phaser**, **Defold**, **Construct 3**, and **Godot**.
 
 🇬🇧 [English](#english) · 🇮🇩 [Bahasa Indonesia](#bahasa-indonesia)
 
@@ -10,6 +10,7 @@ Branded web game loading screen. Drop-in for **Unity WebGL**, **Phaser**, **Defo
 - 🕹️ [Phaser](docs/phaser.md)
 - 🎯 [Defold](docs/defold.md)
 - 🧩 [Construct 3](docs/construct.md)
+- 🧊 [Godot](docs/godot.md)
 
 ---
 
@@ -17,7 +18,7 @@ Branded web game loading screen. Drop-in for **Unity WebGL**, **Phaser**, **Defo
 
 ### What it is
 
-A single, polished loading screen (logo, animated progress bar, percent counter, status text, responsive canvas) packaged so the same look-and-feel works across four major web game engines. Edit the engine-agnostic core once, every adapter inherits.
+A single, polished loading screen (logo, animated progress bar, percent counter, status text, responsive canvas) packaged so the same look-and-feel works across five major web game engines. Edit the engine-agnostic core once, every adapter inherits.
 
 ### Repository layout
 
@@ -106,6 +107,14 @@ new Phaser.Game({
 4. Project Properties → **Loader style** → set to **Nothing** (avoid double loaders).
 5. (Optional) Override defaults via another import script that sets `globalThis.HAGE_CONFIG = { brandColor, productName, subText, minDisplayMs }` before `hage-construct.js` runs.
 6. Export HTML5.
+
+#### Godot 4.x
+
+1. Download `hage-loader-godot-vX.Y.Z.zip`. Keep the `HAGEGames/` folder in your Godot project.
+2. In your **Web** export preset, set **Html -> Custom Html Shell** to `HAGEGames/engine_template.html`.
+3. Export the project to HTML5.
+4. Copy `HAGEGames/hage-loader.js` and `HAGEGames/logo.png` next to the exported `index.html`.
+5. Serve the export folder.
 
 ### Configuration reference
 
@@ -259,6 +268,14 @@ new Phaser.Game({
 4. Project Properties → **Loader style** → set ke **Nothing** (cegah double loader).
 5. (Opsional) Override default lewat import script lain yang set `globalThis.HAGE_CONFIG = { brandColor, productName, subText, minDisplayMs }` sebelum `hage-construct.js` jalan.
 6. Export HTML5.
+
+#### Godot 4.x
+
+1. Download `hage-loader-godot-vX.Y.Z.zip`. Simpan folder `HAGEGames/` di project Godot kamu.
+2. Di preset export **Web**, set **Html -> Custom Html Shell** ke `HAGEGames/engine_template.html`.
+3. Export project ke HTML5.
+4. Copy `HAGEGames/hage-loader.js` dan `HAGEGames/logo.png` ke folder hasil export, sejajar dengan `index.html`.
+5. Serve folder export.
 
 ### Daftar konfigurasi
 
